@@ -15,13 +15,15 @@ import useMacBookStore from '../../store';
 import * as THREE from 'three';
 import { useEffect } from 'react';
 import { noChangeParts } from '../../constants/index.js';
-
+import {SRGBColorSpace} from 'three';
 export default function MacbookModel14(props) {
 
   const { color } = useMacBookStore();
   const { nodes, materials, scene } = useGLTF('/models/macbook-14-transformed.glb')
 
   const texture = useTexture('/screen.png');
+  texture.colorSpace = SRGBColorSpace;
+  texture.needsUpdate = true;
   useEffect(() => {
     console.log('Effect running, color =', color);
 
