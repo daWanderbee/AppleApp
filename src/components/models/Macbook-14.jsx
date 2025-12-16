@@ -19,22 +19,20 @@ import {SRGBColorSpace} from 'three';
 export default function MacbookModel14(props) {
 
   const { color } = useMacBookStore();
-  const { nodes, materials, scene } = useGLTF('/models/macbook-14-transformed.glb')
-
-  const texture = useTexture('/screen.png');
-  texture.colorSpace = SRGBColorSpace;
-  texture.needsUpdate = true;
-  useEffect(() => {
-    console.log('Effect running, color =', color);
-
-    scene.traverse((child) => {
-      if (child.isMesh) {
-        child.material.color = new THREE.Color(color);
-      }
-    });
-  }, [color, scene]);
-
-
+    const { nodes, materials, scene } = useGLTF('/models/macbook-14-transformed.glb')
+    const texture = useTexture('/screen.png');
+    texture.colorSpace = SRGBColorSpace;
+    texture.needsUpdate = true;
+    useEffect(() => {
+      console.log('Effect running, color =', color);
+  
+      scene.traverse((child) => {
+        if (child.isMesh) {
+          child.material.color = new THREE.Color(color);
+        }
+      });
+    }, [color, scene]);
+   
 
 
   return (
